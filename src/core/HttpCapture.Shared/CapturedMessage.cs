@@ -1,6 +1,6 @@
 ﻿using System.Collections.Specialized;
 
-namespace HttpPlayback.Shared
+namespace HttpCapture.Shared
 {
     /// <summary>
     /// Represents a captured HTTP request - this is the raw format that is used

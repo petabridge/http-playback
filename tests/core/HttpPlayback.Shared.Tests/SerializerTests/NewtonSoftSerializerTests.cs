@@ -22,8 +22,7 @@ namespace HttpPlayback.Shared.Tests.SerializerTests
         public void Setup()
         {
             MessageSerializer = SerializerFactory.CreateJsonSerializer<CapturedMessage>();
-            FakeCapturedMessage = new Fake<CapturedMessage>();
-          
+            FakeCapturedMessage = new Fake<CapturedMessage>(); 
         }
 
         #endregion

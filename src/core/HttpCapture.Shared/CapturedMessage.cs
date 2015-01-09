@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters;
 
 namespace HttpCapture.Shared
 {
@@ -6,7 +7,7 @@ namespace HttpCapture.Shared
     /// Represents a captured HTTP request - this is the raw format that is used
     /// to send HTTP requests we want to re-use over the wire to our capture server.
     /// </summary>
-    public sealed class CapturedMessage
+    public class CapturedMessage : IPlaybackObject
     {
         public CapturedMessage() : this(new Dictionary<string, string>()) { }
 
@@ -49,5 +50,12 @@ namespace HttpCapture.Shared
         /// The raw HTTP body of the request
         /// </summary>
         public string Body { get; set; }
+    }
+
+    /// <summary>
+    /// Used to represent <see cref="CapturedMessage"/> instances that were not found upon lookup.
+    /// </summary>
+    public class MissingCapturedMessage : CapturedMessage, IMissingObject
+    {
     }
 }

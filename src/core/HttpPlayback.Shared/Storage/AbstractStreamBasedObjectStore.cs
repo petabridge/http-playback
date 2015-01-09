@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using HttpCapture.Shared;
 using HttpPlayback.Shared.Storage.Serialization;
 
 namespace HttpPlayback.Shared.Storage
@@ -9,7 +10,7 @@ namespace HttpPlayback.Shared.Storage
     /// Abstract base class for all <see cref="IObjectStore{T}"/> implementations
     /// </summary>
     /// <typeparam name="TData"></typeparam>
-    public abstract class AbstractStreamBasedObjectStore<TData> : IObjectStore<TData> where TData : new()
+    public abstract class AbstractStreamBasedObjectStore<TData> : IObjectStore<TData> where TData : IPlaybackObject
     {
         protected AbstractStreamBasedObjectStore(ISerializer<TData> serializer)
         {
@@ -36,17 +37,17 @@ namespace HttpPlayback.Shared.Storage
 
         public TData Read(IObjectLocation readLocation)
         {
-            if (!ObjectExists(readLocation))
-                return default(TData);
-
             var streamTask = ReadAsync(readLocation);
             streamTask.Wait();
             return streamTask.Result;
         }
 
-        public Task<TData> ReadAsync(IObjectLocation readLocation)
+        public async Task<IPlaybackObject> ReadAsync(IObjectLocation readLocation)
         {
-            return ReadStreamAsync(readLocation).ContinueWith(rt => Serializer.Deserialize(rt.Result),
+            if (!ObjectExists(readLocation))
+                return PlaybackObjectExtensions.GetMissing<TData>();
+            
+            return await ReadStreamAsync(readLocation).ContinueWith(rt => Serializer.Deserialize(rt.Result),
                 TaskContinuationOptions.AttachedToParent & TaskContinuationOptions.ExecuteSynchronously);
         }
 

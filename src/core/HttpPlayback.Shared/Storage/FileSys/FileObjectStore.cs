@@ -1,10 +1,11 @@
 using System.IO;
 using System.Threading.Tasks;
+using HttpCapture.Shared;
 using HttpPlayback.Shared.Storage.Serialization;
 
 namespace HttpPlayback.Shared.Storage.FileSys
 {
-    public class FileObjectStore<TData> : AbstractStreamBasedObjectStore<TData> where TData : new()
+    public class FileObjectStore<TData> : AbstractStreamBasedObjectStore<TData> where TData : IPlaybackObject
     {
         public FileObjectStore(ISerializer<TData> serializer)
             : base(serializer)

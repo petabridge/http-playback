@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
+using HttpCapture.Shared;
 
 namespace HttpPlayback.Shared.Storage
 {
@@ -7,7 +8,7 @@ namespace HttpPlayback.Shared.Storage
     /// Defines methods for saving and retreiving objects of type <typeparam name="TData"/>
     /// from a persistent store.
     /// </summary>
-    public interface IObjectStore<TData> where TData:new()
+    public interface IObjectStore<TData> where TData : IPlaybackObject
     {
         void Write(TData data, IObjectLocation writeLocation);
 
@@ -15,7 +16,7 @@ namespace HttpPlayback.Shared.Storage
 
         TData Read(IObjectLocation readLocation);
 
-        Task<TData> ReadAsync(IObjectLocation readLocation);
+        Task<IPlaybackObject> ReadAsync(IObjectLocation readLocation);
 
         bool ObjectExists(IObjectLocation readLocation);
     }

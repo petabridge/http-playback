@@ -8,7 +8,7 @@ namespace HttpPlayback.Shared.Storage.Serialization.Json
     /// JSON.NET - powered serializer. Stores in verbose JSON textual format.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class NewtonsoftJsonSerializer<T> : ISerializer<T> where T : new()
+    public class NewtonsoftJsonSerializer<T> : ISerializer<T>
     {
         private readonly JsonSerializerSettings _settings;
 

@@ -8,4 +8,8 @@ namespace HttpCapture.Shared
     public interface IPlaybackObject
     {
     }
+
+    public abstract class PlaybackObjectBase : IPlaybackObject
+    {
+    }
 }

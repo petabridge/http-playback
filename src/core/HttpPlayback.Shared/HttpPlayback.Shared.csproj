@@ -60,7 +60,12 @@
     <Compile Include="Storage\Serialization\Json\NewtonsoftJsonSerializer.cs" />
     <Compile Include="Storage\Serialization\SerializerFactory.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\HttpCapture.Shared\HttpCapture.Shared.csproj">
+      <Project>{7b354882-a0bc-47a2-bf5c-0e4014a13d2e}</Project>
+      <Name>HttpCapture.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

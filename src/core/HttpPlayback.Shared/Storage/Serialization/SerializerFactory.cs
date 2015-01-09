@@ -7,12 +7,12 @@ namespace HttpPlayback.Shared.Storage.Serialization
     /// </summary>
     public static class SerializerFactory
     {
-        public static ISerializer<TData> CreateJsonSerializer<TData>() where TData : new()
+        public static ISerializer<TData> CreateJsonSerializer<TData>()
         {
             return new NewtonsoftJsonSerializer<TData>();
         }
 
-        public static ISerializer<TData> CreateDefaultSerializer<TData>() where TData : new()
+        public static ISerializer<TData> CreateDefaultSerializer<TData>()
         {
             return CreateJsonSerializer<TData>();
         }

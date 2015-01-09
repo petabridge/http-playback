@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "capture-agent", "capture-agent", "{7459C0E6-18A3-46CD-9850-1E7A9AD96EDB}"
 EndProject
@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C8AAAC
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpCapture.Shared.Tests", "..\tests\core\HttpCapture.Shared.Tests\HttpCapture.Shared.Tests.csproj", "{DAC517F1-C12E-43C7-AC59-E87ABE1A8215}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{37D54BE9-23FA-4E55-AE65-2D47E673C556}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37D54BE9-23FA-4E55-AE65-2D47E673C556}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37D54BE9-23FA-4E55-AE65-2D47E673C556}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAC517F1-C12E-43C7-AC59-E87ABE1A8215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAC517F1-C12E-43C7-AC59-E87ABE1A8215}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAC517F1-C12E-43C7-AC59-E87ABE1A8215}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAC517F1-C12E-43C7-AC59-E87ABE1A8215}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +64,6 @@ Global
 		{7B354882-A0BC-47A2-BF5C-0E4014A13D2E} = {8CB05133-DC05-4041-ADBC-420E2BD5C041}
 		{396206CD-5EAB-4CC0-8E5B-6D82B0491F1B} = {8CB05133-DC05-4041-ADBC-420E2BD5C041}
 		{37D54BE9-23FA-4E55-AE65-2D47E673C556} = {396206CD-5EAB-4CC0-8E5B-6D82B0491F1B}
+		{DAC517F1-C12E-43C7-AC59-E87ABE1A8215} = {396206CD-5EAB-4CC0-8E5B-6D82B0491F1B}
 	EndGlobalSection
 EndGlobal

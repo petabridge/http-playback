@@ -15,14 +15,14 @@ namespace HttpPlayback.Shared.Tests.SerializerTests
     {
         #region Setup / Teardown
 
-        public Fake<CapturedMessage> FakeCapturedMessage;
-        public ISerializer<CapturedMessage> MessageSerializer;
+        public Fake<CapturedHttpRequest> FakeCapturedMessage;
+        public ISerializer<CapturedHttpRequest> MessageSerializer;
 
         [SetUp]
         public void Setup()
         {
-            MessageSerializer = SerializerFactory.CreateJsonSerializer<CapturedMessage>();
-            FakeCapturedMessage = new Fake<CapturedMessage>(); 
+            MessageSerializer = SerializerFactory.CreateJsonSerializer<CapturedHttpRequest>();
+            FakeCapturedMessage = new Fake<CapturedHttpRequest>(); 
         }
 
         #endregion

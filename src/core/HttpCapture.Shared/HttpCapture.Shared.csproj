@@ -42,7 +42,7 @@
     <Compile Include="..\..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="CapturedMessage.cs" />
+    <Compile Include="CapturedHttpRequest.cs" />
     <Compile Include="IMissingObject.cs" />
     <Compile Include="IPlaybackObject.cs" />
     <Compile Include="PlaybackObjectExtensions.cs" />

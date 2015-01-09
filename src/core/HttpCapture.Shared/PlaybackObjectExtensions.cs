@@ -1,4 +1,7 @@
-﻿namespace HttpCapture.Shared
+﻿using System;
+using System.Data;
+
+namespace HttpCapture.Shared
 {
     /// <summary>
     /// Extension methods for <see cref="IPlaybackObject"/>.
@@ -14,6 +17,20 @@
         {
             if (obj == null) return true;
             return obj is IMissingObject;
+        }
+
+        public static IMissingObject GetMissing<TData>() where TData : IPlaybackObject
+        {
+            if (typeof(TData) == typeof(CapturedHttpRequest)) return MissingCapturedHttpRequest.Instance;
+            
+            throw new ArgumentException(string.Format("Type {0} is currently unhandled.", typeof(TData)));
+
+        }
+
+        public static TData GetConcrete<TData>(this Object obj) where TData : IPlaybackObject, new()
+        {
+            var concrete = obj as TData;
+
         }
     }
 }

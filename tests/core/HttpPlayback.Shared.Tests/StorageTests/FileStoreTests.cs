@@ -15,14 +15,14 @@ namespace HttpPlayback.Shared.Tests.StorageTests
     {
         #region Setup / Teardown
 
-        private IObjectStore<CapturedMessage> _messageStore;
-        private Fake<CapturedMessage> _fakeMessage;
+        private IObjectStore<CapturedHttpRequest> _messageStore;
+        private Fake<CapturedHttpRequest> _fakeMessage;
 
         [TestFixtureSetUp]
         public void SetUpOnce()
         {
-            _messageStore = ObjectStoreFactory.CreateFileSystemObjectStore<CapturedMessage>();
-            _fakeMessage = new Fake<CapturedMessage>();
+            _messageStore = ObjectStoreFactory.CreateFileSystemObjectStore<CapturedHttpRequest>();
+            _fakeMessage = new Fake<CapturedHttpRequest>();
         }
 
         [SetUp]
@@ -40,7 +40,7 @@ namespace HttpPlayback.Shared.Tests.StorageTests
         #endregion
 
         #region Helpers
-        private void GenerateAndSaveCapturedMessage(out CapturedMessage msg, out FileObjectLocation path)
+        private void GenerateAndSaveCapturedMessage(out CapturedHttpRequest msg, out FileObjectLocation path)
         {
             msg = _fakeMessage.Generate();
             path = (FileObjectLocation)Path.Combine(TestFilePaths.TestDataPath, String.Format("{0}.dat", Faker.Generators.Strings.GenerateAlphaNumericString()));
@@ -55,7 +55,7 @@ namespace HttpPlayback.Shared.Tests.StorageTests
         public void Should_write_to_disk()
         {
             //arrange
-            CapturedMessage msg;
+            CapturedHttpRequest msg;
             FileObjectLocation path;
             GenerateAndSaveCapturedMessage(out msg, out path);
 
@@ -67,24 +67,24 @@ namespace HttpPlayback.Shared.Tests.StorageTests
         public void Should_read_from_disk()
         {
             //arrange
-            CapturedMessage expectedMessage;
+            CapturedHttpRequest expectedHttpRequest;
             FileObjectLocation path;
-            GenerateAndSaveCapturedMessage(out expectedMessage, out path);
+            GenerateAndSaveCapturedMessage(out expectedHttpRequest, out path);
 
             //act
             var actualMessage = _messageStore.Read(path);
 
             //assert
-            Assert.AreEqual(expectedMessage.Body, actualMessage.Body);
+            Assert.AreEqual(expectedHttpRequest.Body, actualMessage.Body);
         }
 
         [Test]
         public void Should_overrwite_existing_file_on_disk()
         {
             //arrange
-            CapturedMessage initialMessage;
+            CapturedHttpRequest initialHttpRequest;
             FileObjectLocation path;
-            GenerateAndSaveCapturedMessage(out initialMessage, out path);
+            GenerateAndSaveCapturedMessage(out initialHttpRequest, out path);
 
             //act
             var expectedMessage = _fakeMessage.Generate();
@@ -92,7 +92,7 @@ namespace HttpPlayback.Shared.Tests.StorageTests
             var actualMessage = _messageStore.Read(path);
 
             //assert
-            Assert.AreNotEqual(actualMessage.Body, initialMessage.Body);
+            Assert.AreNotEqual(actualMessage.Body, initialHttpRequest.Body);
             Assert.AreEqual(actualMessage.Body, expectedMessage.Body);
         }
 

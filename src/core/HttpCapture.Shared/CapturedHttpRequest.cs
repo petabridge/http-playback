@@ -7,11 +7,11 @@ namespace HttpCapture.Shared
     /// Represents a captured HTTP request - this is the raw format that is used
     /// to send HTTP requests we want to re-use over the wire to our capture server.
     /// </summary>
-    public class CapturedMessage : IPlaybackObject
+    public class CapturedHttpRequest : IPlaybackObject
     {
-        public CapturedMessage() : this(new Dictionary<string, string>()) { }
+        public CapturedHttpRequest() : this(new Dictionary<string, string>()) { }
 
-        public CapturedMessage(IDictionary<string,string> httpHeaders)
+        public CapturedHttpRequest(IDictionary<string,string> httpHeaders)
         {
             HttpHeaders = httpHeaders;
         }
@@ -53,9 +53,20 @@ namespace HttpCapture.Shared
     }
 
     /// <summary>
-    /// Used to represent <see cref="CapturedMessage"/> instances that were not found upon lookup.
+    /// Used to represent <see cref="CapturedHttpRequest"/> instances that were not found upon lookup.
     /// </summary>
-    public class MissingCapturedMessage : CapturedMessage, IMissingObject
+    public class MissingCapturedHttpRequest : CapturedHttpRequest, IMissingObject
     {
+        // ReSharper disable once InconsistentNaming
+        private static readonly MissingCapturedHttpRequest _instance = new MissingCapturedHttpRequest();
+
+        public static MissingCapturedHttpRequest Instance
+        {
+            get { return _instance; }
+        }
+
+        private MissingCapturedHttpRequest()
+        {
+        }
     }
 }

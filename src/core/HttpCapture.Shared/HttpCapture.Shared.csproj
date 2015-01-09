@@ -43,6 +43,9 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CapturedMessage.cs" />
+    <Compile Include="IMissingObject.cs" />
+    <Compile Include="IPlaybackObject.cs" />
+    <Compile Include="PlaybackObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -16,5 +16,7 @@ namespace HttpPlayback.Shared.Storage
         TData Read(IObjectLocation readLocation);
 
         Task<TData> ReadAsync(IObjectLocation readLocation);
+
+        bool ObjectExists(IObjectLocation readLocation);
     }
 }
